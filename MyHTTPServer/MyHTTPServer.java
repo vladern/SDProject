@@ -14,7 +14,8 @@ public class MyHTTPServer
 	}
 	public static String DefaultPage()
 	{
-				return " ";
+				return "<h1 style=\"text-align:center;\">Sistemas tecnologicos para todos !!</h1> " +
+				"<p style=\"text-align:center;\">Gerstion de aparcamientos CC La Marina :)</p>";
 	}
 	public void DefaultConection(int port)
 	{
@@ -49,10 +50,12 @@ public class MyHTTPServer
 		
 				out.write("HTTP/1.0 200 OK\r\n");
 				// Header...
-				out.write("Last-modified: Fri, 09 Aug 1996 14:21:40 GMT\r\n");
+				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
 				out.write("\r\n"); // The content starts afters this empty line
-				out.write("<TITLE>Hello!</TITLE>\r\n");
-				out.write("<h1>Hola mundo !!!! </h1>");
+				out.write("<TITLE>GACCLM</TITLE>\r\n");
+
+				MyHTTPServer server = new MyHTTPServer();
+				out.write(server.DefaultPage());
 
 				//al ternimar el flujo
 				System.err.println("Conexión ha terminado");
