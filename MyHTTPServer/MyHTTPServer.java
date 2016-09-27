@@ -8,9 +8,18 @@ public class MyHTTPServer
 	{
 		// creación del socket
 		int port = 8080;
+
+			MyHTTPServer server = new MyHTTPServer();
+			server.DefaultConection(port);
+	}
+	public static String DefaultPage()
+	{
+				return " ";
+	}
+	public void DefaultConection(int port)
+	{
 		try
 		{
-
 			ServerSocket serverSocket = new ServerSocket(port);
 			System.err.println("El servidor corre con el puerto: "+ port);
 
@@ -37,13 +46,13 @@ public class MyHTTPServer
 					}
 					break;
 				}
-
+		
 				out.write("HTTP/1.0 200 OK\r\n");
 				// Header...
 				out.write("Last-modified: Fri, 09 Aug 1996 14:21:40 GMT\r\n");
 				out.write("\r\n"); // The content starts afters this empty line
 				out.write("<TITLE>Hello!</TITLE>\r\n");
-				out.write("<body><h1>Hola mundo</h1></body>");
+				out.write("<h1>Hola mundo !!!! </h1>");
 
 				//al ternimar el flujo
 				System.err.println("Conexión ha terminado");
