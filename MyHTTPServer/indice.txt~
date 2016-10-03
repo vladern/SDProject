@@ -5,9 +5,6 @@
 <head>
 <title>Easy Parking</title>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="estilos.css" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="alternate" title="Pozolería RSS" type="application/rss+xml" href="/feed.rss" />
 </head>
 <body>
     <header>
