@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+ 
+<html lang="es">
+ 
+<head>
+<title>Easy Parking</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="estilos.css" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="alternate" title="Pozolería RSS" type="application/rss+xml" href="/feed.rss" />
+</head>
+<body>
+    <header>
+       <h1 style="text-align:center">Aparcamiento fácil para todos</h1>
+       <p></p>
+    </header>
+    <section>
+       <article>
+           <h2>Consultas disponibles<h2>
+           <p>Número de aparcamientos disponibles</p>
+       </article>
+    </section>
+</body>
+</html>
+

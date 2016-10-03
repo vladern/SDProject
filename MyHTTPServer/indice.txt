@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+ 
+<html lang="es">
+ 
+<head>
+<title>Easy Parking</title>
+<meta charset="utf-8" />
+</head>
+<body>
+    <header>
+       <h1 style="text-align:center">Aparcamiento fácil para todos</h1>
+       <p></p>
+    </header>
+    <section>
+       <article>
+           <h2>Consultas disponibles<h2>
+           <p>Número de aparcamientos disponibles</p>
+       </article>
+    </section>
+</body>
+</html>
+

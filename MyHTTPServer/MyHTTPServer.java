@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.*;
 //package MyHTTPServer;
 
 public class MyHTTPServer 
@@ -12,15 +13,11 @@ public class MyHTTPServer
 			MyHTTPServer server = new MyHTTPServer();
 			server.DefaultConection();
 	}
-	public static String DefaultPage()
-	{
-				return "<h1 style=\"text-align:center;\">Sistemas tecnologicos para todos !!</h1> " +
-				"<p style=\"text-align:center;\">Gerstion de aparcamientos CC La Marina :)</p>";
-	}
 	public void DefaultConection()
 	{
 			int cola = 4;
 			int port = 8080;
+			Semaphore semaforo = new Semaphore (cola);
 			try
 			{
 				System.out.println("El servidor corre con el puerto: "+ port);
@@ -31,21 +28,29 @@ public class MyHTTPServer
 					Socket clientSocket = serverSocket.accept();
 					Thread hilo0 = new Proceso(clientSocket);
 					hilo0.start();
-					System.out.println("Un nuevo cliente se ha conectado");
+					semaforo.release();
+					System.out.println("Un nuevo cliente se ha conectado");	
+					semaforo.acquire();
 				}
-			}catch(IOException e){}
+			}catch(IOException e)
+			{
 
+			}catch(InterruptedException e){
+
+			}
 	}
 
 	public String leerArchivo(String archivo) throws FileNotFoundException, IOException 
 	{
-	      String cadena ="";
-	      FileReader f = new FileReader(archivo);
-	      BufferedReader b = new BufferedReader(f);
-	      while(b.readLine()!=null) {
-	          cadena = cadena + b.readLine();
-	      }
-	      b.close();
-	      return cadena;
+        String cadena;
+        String aux="";
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        while((cadena = b.readLine())!=null) {
+        //    System.out.println(cadena);
+            aux=aux+cadena;
+        }
+        b.close();
+        return aux;
 	}
 }

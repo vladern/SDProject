@@ -21,29 +21,29 @@ public class Proceso extends Thread
 				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(this.skCliente.getOutputStream()));
 				String s;
 				s = in.readLine();
-				System.out.println("Estoy dentro!");
+//				System.out.println("Estoy dentro!");
 
 				MyHTTPServer archivoHTML = new MyHTTPServer();
-				System.out.println("antes de leer el archivo");
-				String archivo = archivoHTML.leerArchivo("/home/vladernn/Escritorio/sd.txt");
-				System.out.println("despues de leer el archivo");
-				System.out.println(archivo);
-				out.write("");
-			/*	out.write("HTTP/1.0 200 OK\r\n");
+				String archivo = archivoHTML.leerArchivo("/home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/indice.txt");
+//				System.out.println(archivo);
+				out.write("HTTP/1.0 200 OK\r\n");
 				// Header...
 				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
 				out.write("\r\n"); // The content starts afters this empty line
-				out.write("<TITLE>GACCLM</TITLE>\r\n");
 			
 				MyHTTPServer server = new MyHTTPServer();
-				out.write(server.DefaultPage());
-			*/
+				out.write(archivo);
 				//al ternimar el flujo
 				System.err.println("Conexión ha terminado");
+
 				out.close();
 				in.close();
 				this.skCliente.close();
 			}
 		}catch(IOException e){};
+	}
+	public int concurencia()
+	{
+		return 1;
 	}
 }
