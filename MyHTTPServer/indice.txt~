@@ -1,22 +1,33 @@
-<!DOCTYPE html>
- 
-<html lang="es">
- 
+<!DOCTYPE html> 
+<html>
 <head>
-<title>Easy Parking</title>
-<meta charset="utf-8" />
-</head>
-<body>
-    <header>
-       <h1 style="text-align:center">Aparcamiento fácil para todos</h1>
-       <p></p>
-    </header>
-    <section>
-       <article>
-           <h2>Consultas disponibles<h2>
-           <p>Número de aparcamientos disponibles</p>
-       </article>
-    </section>
+<meta charset="utf-8">
+<title>Prueba</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/jquery.mobile.structure-1.4.1.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.mobile-1.4.1.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/jquery.mobile.theme-1.4.1.min.css" rel="stylesheet" type="text/css"/>
+<script src="js/jquery-1.11.0.js"></script>
+<script src="js/jquery.mobile-1.4.1.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="page" data-position="fixed">
+	<div data-role="header">
+		<h1>Página uno</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page2">Página dos</a></li>
+            <li><a href="#page3">Página tres</a></li>
+			<li><a href="#page4">Página cuatro</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h4>Pie de página</h4>
+	</div>
+</div>
+
 </body>
 </html>
 

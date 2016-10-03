@@ -15,7 +15,7 @@ public class MyHTTPServer
 	}
 	public void DefaultConection()
 	{
-			int cola = 4;
+			int cola = 1;
 			int port = 8080;
 			Semaphore semaforo = new Semaphore (cola);
 			try
@@ -35,7 +35,7 @@ public class MyHTTPServer
 
 			}catch(InterruptedException e) // se captura la excepcion de los semaforos
 			{
-
+				System.out.println("Error 404");
 			}
 	}
 
