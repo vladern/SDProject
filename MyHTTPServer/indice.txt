@@ -9,17 +9,17 @@
 
 <div data-role="page" id="page" data-position="fixed">
 	<div data-role="header">
-		<h1>Página uno</h1>
+		<h1 style="text-align:center">Página principal</h1>
 	</div>
-	<div data-role="content">	
+	<div>	
 		<ul data-role="listview">
-			<li><a href="#page2">Página dos</a></li>
-            <li><a href="#page3">Página tres</a></li>
-			<li><a href="#page4">Página cuatro</a></li>
+			<li><a href="page2">Página dos</a></li>
+	    		<li><a href="page3">Página tres</a></li>
+			<li><a href="page4">Página cuatro</a></li>
 		</ul>		
 	</div>
 	<div data-role="footer" data-position="fixed">
-		<h4>Pie de página</h4>
+		<h4 style="text-align:center">Pie de página</h4>
 	</div>
 </div>
 
