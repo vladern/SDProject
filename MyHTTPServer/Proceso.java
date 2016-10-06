@@ -22,31 +22,25 @@ public class Proceso extends Thread
 				BufferedReader in = new BufferedReader(new InputStreamReader(this.skCliente.getInputStream())); //buffer de entrada
 				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(this.skCliente.getOutputStream()));//buffer de salida
 
-				String s;
-				s = in.readLine(); //usar split()
+//				String s;
+//				s = in.readLine(); //usar split()
 
-				String[] partes = s.split("/");
+//				String[] partes = s.split("/");
 
-				MyHTTPServer archivoHTML = new MyHTTPServer(); //instanciar el server
-				String archivo="";
-				System.out.println(" HTTP");
-				System.out.println(partes[1]);
-				if(partes[1].equals(" HTTP"))
+				ServerRequest peticion = new ServerRequest(in); //instanciar el ServerRequest
+				ServerResponse respuesta = new ServerResponse(peticion); //instanciar el ServerResponse
+
+
+				out.write("HTTP/1.0 200 OK\r\n");
+				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
+				out.write("\r\n"); // The content starts afters this empty readLine
+				if(peticion.getMethod().equals("GET"))
 				{
-					archivo = archivoHTML.leerArchivo("/home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/indice.txt");//leo el archivo del html
-				}else if(partes[1].equals("favicon.ico HTTP"))
-				{
-					archivo = archivoHTML.leerArchivo("/home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/indice.txt");//leo el archivo del html
+					out.write(respuesta.doGet()); //mando la respuesta del get
 				}else
 				{
-					archivo = archivoHTML.leerArchivo("/home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/error.txt");
+					out.write(respuesta.doError()); // mando un html de un error
 				}
-				out.write("HTTP/1.0 200 OK\r\n");
-//				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
-				out.write("\r\n"); // The content starts afters this empty line
-				out.write(archivo);
-
-				
 				System.err.println("Conexión ha terminado");//al ternimar el flujo cierro todos los flujos
 				out.close();
 				in.close();

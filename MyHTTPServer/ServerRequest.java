@@ -9,10 +9,11 @@ public class ServerRequest
 	private String resource;
 	private String version;
 	private String headboard;
+	private BufferedReader in;
 
-	public String ServerRequest(BufferedReader in)
+	public ServerRequest(BufferedReader in)
 	{
-		return "";
+		this.in = in;
 	}
 	public String getHeader()
 	{

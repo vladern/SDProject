@@ -27,4 +27,8 @@ public class ServerResponse
 	{
 		return"";
 	}
+	public String doError()
+	{
+		return"";
+	}
 }
