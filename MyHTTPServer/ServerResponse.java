@@ -1,4 +1,4 @@
-package Server;
+package MyHTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -6,6 +6,7 @@ import java.util.concurrent.*;
 public class ServerResponse
 {
 	private ServerRequest request;
+	private Reader html;
 
 	public ServerResponse(ServerRequest r)
 	{
@@ -13,7 +14,16 @@ public class ServerResponse
 	}
 	public String doGet()
 	{
-		return "";
+		try
+		{
+			return html.leerTXT("home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/HTML/indice.txt");
+		}catch(FileNotFoundException e)
+		{
+			return"";
+		}catch(IOException e)
+		{
+			return"";
+		}
 	}
 	public String doPost()
 	{
@@ -29,6 +39,15 @@ public class ServerResponse
 	}
 	public String doError()
 	{
-		return"";
+		try
+		{
+			return html.leerTXT("home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/HTML/.txt");
+		}catch(FileNotFoundException e)
+		{
+			return"";
+		}catch(IOException e)
+		{
+			return"";
+		}
 	}
 }

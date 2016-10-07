@@ -1,4 +1,4 @@
-package Server;
+package MyHTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;

@@ -1,4 +1,4 @@
-package Server;
+package MyHTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -12,6 +12,7 @@ public class ServerRequest
 
 	public ServerRequest(BufferedReader in)
 	{
+		try{
 				String s;
 				s = in.readLine(); //usar split()
 				String [] partes = s.split("/");
@@ -19,6 +20,10 @@ public class ServerRequest
 				this.resource = partes[1];
 				this.version = partes[2];
 				this.headboard = partes[3];
+			}catch(IOException e)
+			{
+				System.out.println("Unable to read request");
+			}
 	}
 	public String getHeader()
 	{
