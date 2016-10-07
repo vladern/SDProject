@@ -9,31 +9,40 @@ public class ServerRequest
 	private String resource;
 	private String version;
 	private String headboard;
-	private BufferedReader in;
 
 	public ServerRequest(BufferedReader in)
 	{
-		this.in = in;
+				String s;
+				s = in.readLine(); //usar split()
+				String [] partes = s.split("/");
+				this.method = partes[0];
+				this.resource = partes[1];
+				this.version = partes[2];
+				this.headboard = partes[3];
 	}
 	public String getHeader()
 	{
 		return "";
 	}
-	public String getMethod()
+	public String getBody()
 	{
 		return "";
+	}
+	public String getMethod()
+	{
+		return this.method;
 	}
 	public String getResource()
 	{
-		return "";
+		return this.resource;
 	}
 	public String getVersion()
 	{
-		return "";
+		return this.version;
 	}
 	public String getHeadboard()
 	{
-		return "";
+		return this.headboard;
 	}
 
 }
