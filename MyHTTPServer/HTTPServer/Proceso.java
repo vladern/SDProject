@@ -1,4 +1,4 @@
-package MyHTTPServer;
+package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -34,7 +34,7 @@ public class Proceso extends Thread
 				out.write("HTTP/1.0 200 OK\r\n");
 				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
 				out.write("\r\n"); // The content starts afters this empty readLine
-				if(peticion.getMethod().equals("GET"))
+				if(peticion.getMethod().equals("GET "))
 				{
 					out.write(respuesta.doGet()); //mando la respuesta del get
 				}else

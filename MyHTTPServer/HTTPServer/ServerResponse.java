@@ -1,4 +1,4 @@
-package MyHTTPServer;
+package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -11,12 +11,13 @@ public class ServerResponse
 	public ServerResponse(ServerRequest r)
 	{
 		this.request = r;
+		this.html = new Reader();
 	}
 	public String doGet()
 	{
 		try
 		{
-			return html.leerTXT("home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/HTML/indice.txt");
+			return html.leerTXT("HTML/indice.txt");
 		}catch(FileNotFoundException e)
 		{
 			return"";
@@ -41,7 +42,7 @@ public class ServerResponse
 	{
 		try
 		{
-			return html.leerTXT("home/vladernn/Escritorio/ProyectoSD/project/SDProject/MyHTTPServer/HTML/.txt");
+			return html.leerTXT("HTML/.txt");
 		}catch(FileNotFoundException e)
 		{
 			return"";

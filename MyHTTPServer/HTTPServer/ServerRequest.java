@@ -1,4 +1,4 @@
-package MyHTTPServer;
+package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -19,7 +19,6 @@ public class ServerRequest
 				this.method = partes[0];
 				this.resource = partes[1];
 				this.version = partes[2];
-				this.headboard = partes[3];
 			}catch(IOException e)
 			{
 				System.out.println("Unable to read request");
