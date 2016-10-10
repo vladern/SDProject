@@ -2,7 +2,6 @@ package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
-//package MyHTTPServer;
 
 public class Proceso extends Thread
 {
