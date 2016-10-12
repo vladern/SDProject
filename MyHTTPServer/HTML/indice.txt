@@ -18,6 +18,9 @@
 			<li><a href="page4">Página cuatro</a></li>
 		</ul>		
 	</div>
+	<div>
+		<img src="nivelGay.jpg">
+	</div>
 	<div data-role="footer" data-position="fixed">
 		<h4 style="text-align:center">Pie de página</h4>
 	</div>

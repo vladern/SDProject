@@ -21,20 +21,14 @@ public class Proceso extends Thread
 				BufferedReader in = new BufferedReader(new InputStreamReader(this.skCliente.getInputStream())); //buffer de entrada
 				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(this.skCliente.getOutputStream()));//buffer de salida
 
-//				String s;
-//				s = in.readLine(); //usar split()
 
-//				String[] partes = s.split("/");
 
 				ServerRequest peticion = new ServerRequest(in); //instanciar el ServerRequest
 				ServerResponse respuesta = new ServerResponse(peticion); //instanciar el ServerResponse
 
-
-				out.write("HTTP/1.0 200 OK\r\n");
-				out.write("Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n");
-				out.write("\r\n"); // The content starts afters this empty readLine
 				if(peticion.getMethod().equals("GET "))
 				{
+					//System.out.println("El recurso es:"+peticion.getResource());
 					out.write(respuesta.doGet()); //mando la respuesta del get
 				}else
 				{
@@ -43,15 +37,12 @@ public class Proceso extends Thread
 				System.err.println("Conexión ha terminado");//al ternimar el flujo cierro todos los flujos
 				out.close();
 				in.close();
-				//this.skCliente.close();
+				this.skCliente.close();
 			}
 		}catch(IOException e)
 		{
 		//	System.out.println("Error 403");
 		//	System.out.println(e.toString());
-		}/*catch(InterruptedException e) // se captura la excepcion de los semaforos
-		{
-			System.out.println("Error 404");
-		}*/
+		}
 	}
 }

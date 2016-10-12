@@ -8,7 +8,7 @@ public class MyHTTPServer
 
 	public static void main(String[] args)
 	{
-		int cola = 1;
+		int cola = 5;
 		int port = 8080;
 
 		try
@@ -19,9 +19,13 @@ public class MyHTTPServer
 			{
 				Socket clientSocket = serverSocket.accept(); // se bloquea en este punto hasta que reciba una conexión
 				Thread hilo0 = new Proceso(clientSocket);
-				if(hilo0.activeCount()<cola)
+				System.out.println("El numero de hilos es:"+hilo0.activeCount());
+				if(hilo0.activeCount()<=cola)
 				{
 					hilo0.start(); // lanzamos el hilo
+				}else
+				{
+					clientSocket.close();
 				}
 				
 			}

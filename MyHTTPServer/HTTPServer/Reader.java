@@ -2,6 +2,8 @@ package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
+import java.nio.file.*;
+import java.util.Base64;
 
 public class Reader
 {
@@ -16,7 +18,7 @@ public class Reader
 	        while((cadena = b.readLine())!=null) 
 	        {
 	        //  System.out.println(cadena);
-		        aux=aux+cadena;
+		        aux=aux+cadena+"\n";
         	}
         	b.close();
 		    return aux;	
@@ -27,11 +29,19 @@ public class Reader
 		{
 			return"";
 		}
-
-        
 	}
-	public String leerJPG()
+	public String leerJPG(String ruta)throws IOException
 	{
-		return "";
+		try
+		{
+			Path path = Paths.get(ruta);
+			byte[] data = Files.readAllBytes(path);
+			String str = Base64.getEncoder().encodeToString(data);
+			return str;
+		}catch(IOException e)
+		{
+			return null;
+		}
+
 	}
 }
