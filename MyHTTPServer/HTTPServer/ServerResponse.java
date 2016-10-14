@@ -22,7 +22,7 @@ public class ServerResponse
 				String text = "HTTP/1.0 200 OK\r\n";
 				text = text + "Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n";
 				text = text + "\r\n";
-				text = text + html.leerTXT("HTML/indice.txt");
+				text = text + html.leerTXT("HTML/indice.html");
 				return text;
 			}else
 			{
@@ -44,6 +44,7 @@ public class ServerResponse
 					img = img + "Content-Transfer-Encoding: base64\r\n";
 					img = img + "\r\n";
 					img = img + html.leerJPG("HTML/"+partes[0]);
+					img = img + "\r\n";
 					img = img + "\r\n";
 					img = img + "----8CFDA75A284D5A8033E016C87CBCE897--";
 					return img;
@@ -77,7 +78,7 @@ public class ServerResponse
 	{
 		try
 		{
-			return html.leerTXT("HTML/.txt");
+			return html.leerTXT("HTML/error.html");	
 		}catch(FileNotFoundException e)
 		{
 			return"";
