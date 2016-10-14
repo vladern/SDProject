@@ -6,17 +6,17 @@ public class Cliente
 	{
 		try
 		{
-			String host = args[1];
-			String port = args[2];
+			String host = "localhost";
+			String port = "1099";
 			System.setSecurityManager(new RMISecurityManager());            	
-			InterfazRemoto objetoRemoto=null;
-			String servidor = "rmi://" +host+ ":" +port+ "/ObjetoRemoro";
-			objetoRemoto =(InterfazRemoto) Naming.lookup(servidor);
+			//InterfazRemoto objetoRemoto=null;
+			String servidor = "rmi://"+host+":"+port+"/ObjetoRemoto";
+			InterfazRemoto tuTia = (InterfazRemoto)Naming.lookup(servidor);
 			System.out.println("La suma de 2+3 es:");
-			System.out.println(objetoRemoto.suma(2,3));
+			System.out.println(tuTia.suma(2,3));
 		}catch(Exception e)
 		{
-
+			System.out.println("Exception "+e.getMessage());
 		}
 	}
 }

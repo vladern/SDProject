@@ -29,7 +29,7 @@ public class Proceso extends Thread
 				if(peticion.getMethod().equals("GET "))
 				{
 					//System.out.println("El recurso es:"+peticion.getResource());
-					out.write(respuesta.doGet()); //mando la respuesta del get
+					out.write(respuesta.doGet());//mando la respuesta del get
 				}else
 				{
 					out.write(respuesta.doError()); // mando un html de un error
