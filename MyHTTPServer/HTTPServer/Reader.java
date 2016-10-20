@@ -3,7 +3,7 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
 import java.nio.file.*;
-import java.util.Base64;
+//import java.util.Base64;
 
 public class Reader
 {
@@ -24,15 +24,24 @@ public class Reader
 		    return aux;	
 		}catch(FileNotFoundException e)
 		{
-			return"";
+			try
+			{
+				return this.leerTXT("HTML/error.html");
+			}catch(FileNotFoundException x)
+			{
+				return null;
+			}catch(IOException x)
+			{
+				return null;
+			}
 		}catch(IOException e)
 		{
-			return"";
+			return null;
 		}
 	}
 	public String leerJPG(String ruta)throws IOException
 	{
-		try
+		/*try
 		{
 			Path path = Paths.get(ruta);
 			byte[] data = Files.readAllBytes(path);
@@ -41,7 +50,7 @@ public class Reader
 		}catch(IOException e)
 		{
 			return null;
-		}
-
+		}*/
+		return null;
 	}
 }

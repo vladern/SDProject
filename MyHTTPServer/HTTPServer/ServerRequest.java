@@ -15,6 +15,7 @@ public class ServerRequest
 		try{
 				String s;
 				s = in.readLine(); //usar split()
+				System.out.println("--"+s+"--");
 				String [] partes = s.split("/");
 				this.method = partes[0];
 				this.resource = partes[1];

@@ -21,16 +21,17 @@ public class Proceso extends Thread
 				BufferedReader in = new BufferedReader(new InputStreamReader(this.skCliente.getInputStream())); //buffer de entrada
 				BufferedWriter out = new BufferedWriter(new OutputStreamWriter(this.skCliente.getOutputStream()));//buffer de salida
 
-
-
 				ServerRequest peticion = new ServerRequest(in); //instanciar el ServerRequest
 				ServerResponse respuesta = new ServerResponse(peticion); //instanciar el ServerResponse
-
+				System.out.println("----"+peticion.getMethod()+"----");
 				if(peticion.getMethod().equals("GET "))
 				{
 					//System.out.println("El recurso es:"+peticion.getResource());
 					out.write(respuesta.doGet());//mando la respuesta del get
-				}else
+				}/*else if () 
+				{
+					
+				}*/else
 				{
 					out.write(respuesta.doError()); // mando un html de un error
 				}

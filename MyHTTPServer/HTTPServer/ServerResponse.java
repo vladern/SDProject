@@ -25,32 +25,17 @@ public class ServerResponse
 				text = text + html.leerTXT("HTML/indice.html");
 				return text;
 			}else
-			{
-				String s = request.getResource();
-				String[] partes = s.split(" ");
-				String[] tipo = partes[0].replace("."," ").split(" ");
-				System.out.println(partes[0]+","+partes[1]);
-				System.out.println("-"+tipo[1]+"-");
-				if(partes[0].equals("favicon.ico"))
+			{	
+				if(request.getResource().equals("controladorSD"))
 				{
-					String img = "Content-Type: image/pjpeg; name=\"favicon.ico\"\r\n";
-					img = img + "Content-Transfer-Encoding: base64\r\n";
-					img = img + "\r\n";
-					img = img + html.leerJPG("HTML/favicon.ico");
-					return img;
-				}else if(tipo[1].equals("jpg"))
-				{
-					String img = "Content-Type: image/pjpeg; name=\"nivelGay.jpg\"\r\n";
-					img = img + "Content-Transfer-Encoding: base64\r\n";
-					img = img + "\r\n";
-					img = img + html.leerJPG("HTML/"+partes[0]);
-					img = img + "\r\n";
-					img = img + "\r\n";
-					img = img + "----8CFDA75A284D5A8033E016C87CBCE897--";
-					return img;
+					Cliente cliente = new Cliente();
+					String[] parte = request.getVersion().split(" ");
+					System.out.println("--"+parte[0]+"--");
+					return cliente.getInfo(parte[0]);
 				}else
 				{
-					return html.leerTXT("HTML/"+partes[0]);
+					System.out.println("--"+request.getResource()+"--");
+					return html.leerTXT("HTML/"+request.getResource());
 				}
 			} 
 			
