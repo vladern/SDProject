@@ -16,7 +16,7 @@ public class ClientMain {
 			if (obj instanceof ServerServices) {
 				System.out.println("Calling remote object: " + remoteObjName);
 				final ServerServices server = (ServerServices)obj;
-				server.sayHelloWorld();
+				System.out.println(server.sayHelloWorld());
 			}
 		}
 	}

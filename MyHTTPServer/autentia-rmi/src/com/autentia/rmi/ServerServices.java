@@ -8,5 +8,5 @@ import java.rmi.RemoteException;
  */
 public interface ServerServices extends Remote 
 {	
-	public void sayHelloWorld() throws RemoteException;
+	public String sayHelloWorld() throws RemoteException;
 }
