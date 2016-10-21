@@ -14,8 +14,8 @@ public class Slave extends UnicastRemoteObject implements SlaveServices {
 		this.rmiName = rmiName;
 	}
 
-	public void sayHelloWorld() throws RemoteException {
-		System.out.println("I'm the slave " + getRmiName() + ", and I say: Hellow world !!!");
+	public String sayHelloWorld() throws RemoteException {
+		return "I'm the slave " + getRmiName() + ", and I say: Hellow world !!!";
 	}
 
 	public String getRmiName() throws RemoteException {

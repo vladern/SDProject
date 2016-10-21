@@ -1,0 +1,4 @@
+cd Controler
+cd autentia-rmi
+cd src
+rmiregistry & java -cp . -Djava.rmi.server.hostname=localhost com.autentia.rmi.MasterMain

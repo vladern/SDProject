@@ -1,0 +1,4 @@
+cd autentia-rmi/src
+echo "IP del rmiregistry:"
+read ip
+
