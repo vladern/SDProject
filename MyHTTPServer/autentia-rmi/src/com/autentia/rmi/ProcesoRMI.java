@@ -18,12 +18,15 @@ public class ProcesoRMI extends Thread
 	{
 		try
 		{
-			BufferedReader in = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream())); //buffer de entrada
-			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(this.clientSocket.getOutputStream()));//buffer de salida
-			String peticion = in.readLine();
+			Socket skCliente = new Socket(controlerHost,port);
+			OutputStream aux = skCliente.getOutputStream();
+			DataOutputStream flujo= new DataOutputStream(aux);
+			String peticion = flujo.readUTF();
 			String buscado = "setluz";
 			System.out.println("++"+peticion+"++");
 			boolean encontradoSet = peticion.toUpperCase().contains(buscado.toUpperCase()); // busco si contiene setluz
+			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
+			String[] remoteObjNames = registry.list();
 			if(encontradoSet)
 			{
 				String[] partes = peticion.split("?");
@@ -38,8 +41,6 @@ public class ProcesoRMI extends Thread
 				System.out.println("apartado:"+apartado+"direccion:"+direccion[1]);
 			}
 
-			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
-			String[] remoteObjNames = registry.list();
 			for (String remoteObjName : remoteObjNames)
 			{
 				Object obj = registry.lookup(remoteObjName);

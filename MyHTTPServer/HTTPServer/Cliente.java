@@ -16,15 +16,19 @@ class Cliente
 		{
 			int port=8081;
 			System.out.println("Contacto con el controlador con la ip:"+controlerHost);
-			Socket skCliente = new Socket(controlerHost,port);
-			BufferedReader in = new BufferedReader(new InputStreamReader(skCliente.getInputStream())); //buffer de entrada
-			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(skCliente.getOutputStream()));//buffer de salida
 
-			out.write(sol);
-			String respuesta=in.readLine();
+			Socket skCliente = new Socket(controlerHost,port);
+			OutputStream aux = skCliente.getOutputStream();
+			DataOutputStream flujo= new DataOutputStream(aux);
+			flujo.writeUTF(sol);
+			InputStream aux1 = skCliente.getInputStream();
+			DataInputStream flujo1 = new DataInputStream(aux1);
+			String respuesta=flujo1.readUTF();
 			skCliente.close();
-			in.close();
-			out.close();
+			aux.close();
+			aux1.close();
+			flujo.close();
+			flujo1.close();
 			return respuesta;
 		}catch(IOException e)
 		{

@@ -30,7 +30,7 @@ public class ServerResponse
 				if(request.getResource().equals("controladorSD"))
 				{
 					Cliente cliente = new Cliente(controlerHost);
-					String[] parte = request.getResource().split(" ");
+					String[] parte = request.getVersion().split(" ");
 					System.out.println("--"+parte[0]+"--");
 					return cliente.getInfo(parte[0]);
 				}else
