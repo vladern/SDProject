@@ -25,22 +25,22 @@ public class ProcesoRMI extends Thread
 			String buscado = "setluz";
 			System.out.println("++"+peticion+"++");
 			boolean encontradoSet = peticion.toUpperCase().contains(buscado.toUpperCase()); // busco si contiene setluz
-			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
-			String[] remoteObjNames = registry.list();
+		//	Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
+		//	String[] remoteObjNames = registry.list();
 			if(encontradoSet)
 			{
-				String[] partes = peticion.split("?");
+				String[] partes = peticion.replace("?"," ").split(" ");
 				String[] apartado = partes[0].split("=");
 				String[] direccion = partes[1].split("=");
-				System.out.println("apartado:"+apartado[1]+"direccion:"+direccion[1]);
+				System.out.println("apartado:"+apartado[0]+"="+apartado[1]+"direccion:"+direccion[1]);
 			}else
 			{
-				String[] partes = peticion.split("?");
+				String[] partes = peticion.replace("?"," ").split(" ");
 				String apartado = partes[0];
 				String[] direccion = partes[1].split("=");
 				System.out.println("apartado:"+apartado+"direccion:"+direccion[1]);
 			}
-			for (String remoteObjName : remoteObjNames)
+			/*for (String remoteObjName : remoteObjNames)
 			{
 				Object obj = registry.lookup(remoteObjName);
 				if (obj instanceof ServerServices) 
@@ -49,13 +49,13 @@ public class ProcesoRMI extends Thread
 					final ServerServices server = (ServerServices)obj;
 					System.out.println(server.sayHelloWorld());
 				}
-			}
+			}*/
 		}catch(IOException e)
 		{
 
-		}catch(NotBoundException ex)
+		}/*atch(NotBoundException ex)
 		{
 
-		}
+		}*/
 	}
 }
