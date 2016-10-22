@@ -13,7 +13,7 @@ public class ServerResponse
 		this.request = r;
 		this.html = new Reader();
 	}
-	public String doGet()
+	public String doGet(String controlerHost)
 	{
 		try
 		{
@@ -26,10 +26,11 @@ public class ServerResponse
 				return text;
 			}else
 			{	
+				System.out.println("++"+request.getMethod()+"++");
 				if(request.getResource().equals("controladorSD"))
 				{
-					Cliente cliente = new Cliente();
-					String[] parte = request.getVersion().split(" ");
+					Cliente cliente = new Cliente(controlerHost);
+					String[] parte = request.getResource().split(" ");
 					System.out.println("--"+parte[0]+"--");
 					return cliente.getInfo(parte[0]);
 				}else
@@ -41,6 +42,7 @@ public class ServerResponse
 			
 		}catch(FileNotFoundException e)
 		{
+			System.out.println("Excepion de fichero no encontrado");
 			return null;
 		}catch(IOException e)
 		{

@@ -5,10 +5,13 @@ import java.util.concurrent.*;
 
 public class Proceso extends Thread
 {
-	private Socket skCliente;		
-	public Proceso(Socket psCliente)
+	private Socket skCliente;
+	private String controlerHost;		
+	public Proceso(Socket psCliente,String controlerHost)
 	{
+		super();
 		this.skCliente = psCliente;
+		this.controlerHost= controlerHost;
 	}
 	public void run()
 	{
@@ -27,7 +30,7 @@ public class Proceso extends Thread
 				if(peticion.getMethod().equals("GET "))
 				{
 					//System.out.println("El recurso es:"+peticion.getResource());
-					out.write(respuesta.doGet());//mando la respuesta del get
+					out.write(respuesta.doGet(controlerHost));//mando la respuesta del get
 				}/*else if () 
 				{
 					
