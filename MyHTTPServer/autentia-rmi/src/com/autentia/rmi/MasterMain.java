@@ -10,7 +10,7 @@ public class MasterMain {
 		Master master = new Master(registry);
 		registry.rebind(Master.RMI_NAME, master);
 
-		System.out.println("Waiting for someone wake me up.");
+		System.out.println("Esperando a alguien  para que se regisrte :) ");
 		MasterMain masterMain = new MasterMain();
 		synchronized (masterMain) {
 			try {
