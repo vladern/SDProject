@@ -18,10 +18,10 @@ public class ProcesoRMI extends Thread
 	{
 		try
 		{
-			Socket skCliente = new Socket(controlerHost,port);
-			OutputStream aux = skCliente.getOutputStream();
-			DataOutputStream flujo= new DataOutputStream(aux);
+			InputStream aux = clientSocket.getInputStream();
+			DataInputStream flujo = new DataInputStream( aux );
 			String peticion = flujo.readUTF();
+
 			String buscado = "setluz";
 			System.out.println("++"+peticion+"++");
 			boolean encontradoSet = peticion.toUpperCase().contains(buscado.toUpperCase()); // busco si contiene setluz
@@ -40,7 +40,6 @@ public class ProcesoRMI extends Thread
 				String[] direccion = partes[1].split("=");
 				System.out.println("apartado:"+apartado+"direccion:"+direccion[1]);
 			}
-
 			for (String remoteObjName : remoteObjNames)
 			{
 				Object obj = registry.lookup(remoteObjName);
