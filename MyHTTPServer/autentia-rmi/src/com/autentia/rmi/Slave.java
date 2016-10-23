@@ -39,11 +39,11 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	}
 	public String getFecha()
 	{
-		return fecha;
+		return getDateTime();
 	}
 	public String ultimaFecha()
 	{
-		return getDateTime();
+		return fecha;
 	}
 	public String getColor()
 	{
@@ -61,7 +61,14 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	public boolean setColor(String aEscibir)
 	{
 		Reader datos = new Reader();
-		return datos.escribirTXT(aEscibir);
+		if(datos.escribirTXT(aEscibir))
+		{
+			this.color = aEscibir;
+			return true;
+		}else
+		{
+			return false;
+		}
 	}
 	private String getDateTime() 
 	{

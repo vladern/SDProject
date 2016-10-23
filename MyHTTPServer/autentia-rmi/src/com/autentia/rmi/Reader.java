@@ -3,6 +3,9 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
 import java.nio.file.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Reader
 {
@@ -36,7 +39,7 @@ public class Reader
 			String[] datos = leerTXT("../../TextoEsclavo/info.txt").split("@");
 			PrintWriter writer = new PrintWriter("../../TextoEsclavo/info.txt", "UTF-8");
 			writer.println(datos[0]);
-			writer.println(datos[1]);
+			writer.println(getDateTime());
 			writer.println(aEscribir);
 			writer.close();
 			return true;			
@@ -49,4 +52,10 @@ public class Reader
 		}
 
 	}
+	private String getDateTime() 
+	{
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }
