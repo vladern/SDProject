@@ -24,6 +24,7 @@ class Cliente
 			InputStream aux1 = skCliente.getInputStream();
 			DataInputStream flujo1 = new DataInputStream(aux1);
 			String respuesta=flujo1.readUTF();
+			System.out.println("la respuesta es:"+respuesta);
 			skCliente.close();
 			aux.close();
 			aux1.close();
