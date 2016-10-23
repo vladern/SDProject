@@ -11,4 +11,5 @@ public interface SlaveServices extends ServerServices
 	public String getFecha() throws RemoteException;
 	public String getColor()throws RemoteException;
 	public boolean setColor()throws RemoteException;
+	public String ultimaFecha() throws RemoteException;
 }

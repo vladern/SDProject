@@ -2,6 +2,9 @@ package com.autentia.rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.io.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Slave extends UnicastRemoteObject implements SlaveServices 
 {
@@ -17,13 +20,13 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 		Reader read = new Reader();
 		try
 		{
-			String [] datos = read.leerTXT("../../../../../TextoEsclavo/info.txt").split(" ");
+			String []datos = read.leerTXT("../../../../../TextoEsclavo/info.txt").split(" ");
 			this.volumen=datos[0];
 			this.fecha=datos[1];
 			this.color=datos[2];
 		}catch(FileNotFoundException e)
 		{
-
+			System.out.println("no puedo encontrar la ruta o el archivo");
 		}catch(IOException ex)
 		{
 
@@ -37,6 +40,10 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	public String getFecha()
 	{
 		return fecha;
+	}
+	public String ultimaFecha()
+	{
+		return getDateTime();
 	}
 	public String getColor()
 	{
@@ -55,4 +62,10 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	{
 		return true;
 	}
+	private String getDateTime() 
+	{
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }

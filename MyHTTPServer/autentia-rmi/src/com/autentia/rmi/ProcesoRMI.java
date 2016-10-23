@@ -19,6 +19,7 @@ public class ProcesoRMI extends Thread
 	{
 		try
 		{
+			System.out.println("Estoy en el");
 			InputStream aux = clientSocket.getInputStream();
 			DataInputStream flujo = new DataInputStream( aux );
 			String peticion = flujo.readUTF();
@@ -41,6 +42,7 @@ public class ProcesoRMI extends Thread
 
 				OutputStream aux1 = clientSocket.getOutputStream();
 				DataOutputStream flujo1= new DataOutputStream( aux1 );
+				System.out.println("a punto de responder");
 				flujo1.writeUTF(respuestaRMI(direccion[1],apartado));
 			}
 		}catch(IOException e)
@@ -55,22 +57,34 @@ public class ProcesoRMI extends Thread
 	{
 		try
 		{
+			System.out.println("Entro al respuestaRMI");
 			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
 			String[] remoteObjNames = registry.list();
-			for (String remoteObjName : remoteObjNames)
-			{
-				SlaveServices obj =(SlaveServices)registry.lookup(remoteObjName);
-				if (remoteObjName.equals(nombreEsclavo)) 
-				{
-					/*System.out.println("Calling remote object: " + remoteObjName);
-					final ServerServices server = (ServerServices)obj;
-					System.out.println(server.sayHelloWorld());*/
-					return "he encontrado el esclavo";
-				}else
-				{
-					return "no he encontrado el esclavo";
-				}
-			}
+	        for (String remoteObjName : remoteObjNames) 
+	        {
+	            Object obj = registry.lookup(remoteObjName);
+	            if (obj instanceof SlaveServices) {
+	                System.out.println("llamando al Esclavo: " + remoteObjName);
+	                final SlaveServices server = (SlaveServices)obj;
+	                if(server.getRmiName().equals(nombreEsclavo))
+	                {
+	                	if(peticion.equals("volumen"))
+	                	{
+	                		return "volumen="+server.getVolumen();
+	                	}else if(peticion.equals("fecha"))
+	                	{
+	                		return "fecha="+server.getFecha();
+	                	}else if(peticion.equals("ultimafecha"))
+	                	{
+	                		return "ultimafecha="+server.ultimaFecha();
+	                	}else if(peticion.equals("luz"))
+	                	{
+	                		return "color del led es ="+server.getColor();
+	                	}
+	                	return "he encontrado mi esclavo";
+	                }
+	            }
+	        }
 			return "algo en el for fue mal";
 		}catch(RemoteException e)
 		{
@@ -79,7 +93,5 @@ public class ProcesoRMI extends Thread
 		{
 			return "NotBoundException";
 		}
-
-
 	}
 }

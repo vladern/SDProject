@@ -23,7 +23,7 @@ public class Reader
 		    return aux;	
 		}catch(FileNotFoundException e)
 		{
-			return null;
+			return "no encuentro el archivo";
 		}catch(IOException e)
 		{
 			return null;
