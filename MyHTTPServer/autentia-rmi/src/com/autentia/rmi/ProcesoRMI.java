@@ -32,13 +32,19 @@ public class ProcesoRMI extends Thread
 				String[] partes = peticion.replace("?"," ").split(" ");
 				String[] apartado = partes[0].split("=");
 				String[] direccion = partes[1].split("=");
-				System.out.println("apartado:"+apartado[0]+"="+apartado[1]+"direccion:"+direccion[1]);
+				System.out.println("apartado:"+apartado[0]+" = "+apartado[1]+" direccion:"+direccion[1]);
+
+				OutputStream aux1 = clientSocket.getOutputStream();
+				DataOutputStream flujo1= new DataOutputStream( aux1 );
+				System.out.println("a punto de responder");
+				flujo1.writeUTF(respuestaRMI(direccion[1],apartado[0],apartado[1]));
+
 			}else
 			{
 				String[] partes = peticion.replace("?"," ").split(" ");
 				String apartado = partes[0];
 				String[] direccion = partes[1].split("=");
-				System.out.println("apartado:"+apartado+"direccion:"+direccion[1]);
+				System.out.println("apartado:"+apartado+" direccion:"+direccion[1]);
 
 				OutputStream aux1 = clientSocket.getOutputStream();
 				DataOutputStream flujo1= new DataOutputStream( aux1 );
@@ -66,6 +72,7 @@ public class ProcesoRMI extends Thread
 	            if (obj instanceof SlaveServices) {
 	                System.out.println("llamando al Esclavo: " + remoteObjName);
 	                final SlaveServices server = (SlaveServices)obj;
+	                System.out.println("el nombre del server es:"+server.getRmiName());
 	                if(server.getRmiName().equals(nombreEsclavo))
 	                {
 	                	if(peticion.equals("volumen"))
@@ -80,6 +87,39 @@ public class ProcesoRMI extends Thread
 	                	}else if(peticion.equals("luz"))
 	                	{
 	                		return "color del led es ="+server.getColor();
+	                	}
+	                	return "he encontrado mi esclavo";
+	                }
+	            }
+	        }
+			return "algo en el for fue mal";
+		}catch(RemoteException e)
+		{
+			return "RemoteException";			
+		}catch(NotBoundException ex)
+		{
+			return "NotBoundException";
+		}
+	}
+	private String respuestaRMI(String nombreEsclavo,String peticion,String aEscribir)
+	{
+		try
+		{
+			System.out.println("Entro al respuestaRMI");
+			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
+			String[] remoteObjNames = registry.list();
+	        for (String remoteObjName : remoteObjNames) 
+	        {
+	            Object obj = registry.lookup(remoteObjName);
+	            if (obj instanceof SlaveServices) {
+	                System.out.println("llamando al Esclavo: " + remoteObjName);
+	                final SlaveServices server = (SlaveServices)obj;
+	                System.out.println("el nombre del server es:"+server.getRmiName());
+	                if(server.getRmiName().equals(nombreEsclavo))
+	                {
+	                	if(peticion.equals("setluz"))
+	                	{
+	                		return "Se ha escrito el color?: "+server.setColor(aEscribir);
 	                	}
 	                	return "he encontrado mi esclavo";
 	                }

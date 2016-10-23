@@ -17,7 +17,7 @@ public class Reader
 	        while((cadena = b.readLine())!=null) 
 	        {
 	        //  System.out.println(cadena);
-		        aux=aux+cadena+" ";
+		        aux=aux+cadena+"@";
         	}
         	b.close();
 		    return aux;	
@@ -28,5 +28,25 @@ public class Reader
 		{
 			return null;
 		}
+	}
+	public boolean escribirTXT(String aEscribir)
+	{
+		try
+		{
+			String[] datos = leerTXT("../../TextoEsclavo/info.txt").split("@");
+			PrintWriter writer = new PrintWriter("../../TextoEsclavo/info.txt", "UTF-8");
+			writer.println(datos[0]);
+			writer.println(datos[1]);
+			writer.println(aEscribir);
+			writer.close();
+			return true;			
+		}catch(FileNotFoundException e)
+		{
+			return false;
+		}catch(IOException e)
+		{
+			return false;
+		}
+
 	}
 }

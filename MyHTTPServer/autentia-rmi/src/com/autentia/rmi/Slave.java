@@ -20,7 +20,7 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 		Reader read = new Reader();
 		try
 		{
-			String []datos = read.leerTXT("../../../../../TextoEsclavo/info.txt").split(" ");
+			String []datos = read.leerTXT("../../TextoEsclavo/info.txt").split("@");
 			this.volumen=datos[0];
 			this.fecha=datos[1];
 			this.color=datos[2];
@@ -58,13 +58,14 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	{
 		return rmiName;
 	}
-	public boolean setColor()
+	public boolean setColor(String aEscibir)
 	{
-		return true;
+		Reader datos = new Reader();
+		return datos.escribirTXT(aEscibir);
 	}
 	private String getDateTime() 
 	{
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
         Date date = new Date();
         return dateFormat.format(date);
     }
