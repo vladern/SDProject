@@ -19,7 +19,12 @@ public class ServerRequest
 				String [] partes = s.split("/");
 				this.method = partes[0];
 				this.resource = partes[1];
-				this.version = partes[2];
+				if(this.resource.equals("favicon.ico HTTP")==false && this.resource.equals(" HTTP"))
+				{
+					this.version = partes[2];
+					this.headboard = partes[3];
+					System.out.println("@@-"+this.headboard);				
+				}
 			}catch(IOException e)
 			{
 				System.out.println("Unable to read request");

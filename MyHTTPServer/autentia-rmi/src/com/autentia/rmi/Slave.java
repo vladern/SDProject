@@ -64,6 +64,7 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 		if(datos.escribirTXT(aEscibir))
 		{
 			this.color = aEscibir;
+			this.fecha = getDateTime();
 			return true;
 		}else
 		{

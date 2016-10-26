@@ -13,30 +13,41 @@ public class ServerResponse
 		this.request = r;
 		this.html = new Reader();
 	}
+	public String cabecera(String cuerpo)
+	{
+		String text = "HTTP/1.0 200 OK\r\n";
+		text = text + "Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n";
+		text = text + "Cnection: close\r\n";
+		text = text + "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		text = text + "Server: myHttpServer\r\n";
+		text = text + "Content-Lenght: 8000\r\n";
+		text = text + "\r\n";
+		text = text + cuerpo;
+		return text;
+	}
 	public String doGet(String controlerHost)
 	{
 		try
 		{
 			if(request.getResource().equals(" HTTP"))
 			{
-				String text = "HTTP/1.0 200 OK\r\n";
-				text = text + "Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n";
-				text = text + "\r\n";
-				text = text + html.leerTXT("HTML/indice.html");
-				return text;
+				return cabecera(html.leerTXT("HTML/indice.html"));
+			}else if(request.getResource().equals("favicon.ico HTTP"))
+			{
+				return "";
 			}else
 			{	
 				System.out.println("++"+request.getMethod()+"++");
-				if(request.getResource().equals("controladorSD"))
+				if(request.getVersion().equals("controladorSD"))
 				{
 					Cliente cliente = new Cliente(controlerHost);
-					String[] parte = request.getVersion().split(" ");
+					String[] parte = request.getHeadboard().split(" ");
 					System.out.println("--"+parte[0]+"--");
-					return cliente.getInfo(parte[0]);
+					return cabecera(cliente.getInfo(parte[0]));
 				}else
 				{
 					System.out.println("--"+request.getResource()+"--");
-					return html.leerTXT("HTML/"+request.getResource());
+					return cabecera(html.leerTXT("HTML/"+request.getResource()));
 				}
 			} 
 			
@@ -65,7 +76,7 @@ public class ServerResponse
 	{
 		try
 		{
-			return html.leerTXT("HTML/error.html");	
+			return cabecera(html.leerTXT("HTML/error.html"));	
 		}catch(FileNotFoundException e)
 		{
 			return"";

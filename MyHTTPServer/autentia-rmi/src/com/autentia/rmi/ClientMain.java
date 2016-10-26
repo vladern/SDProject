@@ -21,6 +21,7 @@ public class ClientMain
 				Socket clientSocket = serverSocket.accept(); // se bloquea en este punto hasta que reciba una conexión
 				Thread hilo0 = new ProcesoRMI(clientSocket,remoteHost);
 				System.out.println("El numero de hilos es:"+hilo0.activeCount());
+				
 				if(hilo0.activeCount()<=cola)
 				{
 					hilo0.start(); // lanzamos el hilo
