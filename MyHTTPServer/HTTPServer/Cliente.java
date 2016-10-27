@@ -6,18 +6,19 @@ import java.net.*;
 class Cliente
 {
 	private String controlerHost;
-	public Cliente(String controlerHost)
+	private int controlerPort;
+	public Cliente(String controlerHost,int controlerPort)
 	{
 		this.controlerHost=controlerHost;
+		this.controlerPort=controlerPort;
 	}
 	public String getInfo(String sol)
 	{
 		try
 		{
-			int port=8081;
 			System.out.println("Contacto con el controlador con la ip:"+controlerHost);
 
-			Socket skCliente = new Socket(controlerHost,port);
+			Socket skCliente = new Socket(controlerHost,controlerPort);
 			OutputStream aux = skCliente.getOutputStream();
 			DataOutputStream flujo= new DataOutputStream(aux);
 			flujo.writeUTF(sol);
@@ -25,6 +26,7 @@ class Cliente
 			DataInputStream flujo1 = new DataInputStream(aux1);
 			String respuesta=flujo1.readUTF();
 			System.out.println("la respuesta es:"+respuesta);
+
 			skCliente.close();
 			aux.close();
 			aux1.close();
@@ -33,7 +35,7 @@ class Cliente
 			return respuesta;
 		}catch(IOException e)
 		{
-			return null;
+			return "<body><br><br><h1 style=\"text-aling:center\">Error 409</body>";
 		}
 	}
 }

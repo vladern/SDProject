@@ -67,10 +67,11 @@ public class ProcesoRMI extends Thread
 
 		}*/
 	}
-	public String listaDeSondas()
+	private String listaDeSondas()
 	{
 		try
 		{
+			System.out.println("Entro en la listaDeSondas");
 			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
 			String[] remoteObjNames = registry.list();
 			String devolver="<body>";
@@ -80,13 +81,13 @@ public class ProcesoRMI extends Thread
 				final SlaveServices server = (SlaveServices)obj;
 				devolver+=server.getRmiName()+"\n";
 			}
-			return devolver+="</body>";			
+			return devolver+="</body>";
 		}catch(RemoteException e)
 		{
 			return "RemoteException";
 		}catch(NotBoundException ex)
 		{
-			return "NotBoundException	";
+			return "NotBoundException";
 		}
 
 	}
@@ -136,7 +137,7 @@ public class ProcesoRMI extends Thread
 	{
 		try
 		{
-			System.out.println("Entro al respuestaRMI");
+			System.out.println("Entro al set respuestaRMI");
 			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
 			String[] remoteObjNames = registry.list();
 	        for (String remoteObjName : remoteObjNames) 
@@ -145,10 +146,10 @@ public class ProcesoRMI extends Thread
 	            if (obj instanceof SlaveServices) {
 	                System.out.println("llamando al Esclavo: " + remoteObjName);
 	                final SlaveServices server = (SlaveServices)obj;
-	                System.out.println("el nombre del server es:"+server.getRmiName());
 	                if(server.getRmiName().equals(nombreEsclavo))
 	                {
-	                	if(peticion.equals("setluz"))
+	                	System.out.println("el nombre del server es:"+server.getRmiName()+"con la peticion "+peticion);
+	                	if(peticion.equals("?setluz"))
 	                	{
 	                		return "Se ha escrito el color?: "+server.setColor(aEscribir);
 	                	}

@@ -39,18 +39,4 @@ public class Reader
 			return null;
 		}
 	}
-	public String leerJPG(String ruta)throws IOException
-	{
-		/*try
-		{
-			Path path = Paths.get(ruta);
-			byte[] data = Files.readAllBytes(path);
-			String str = Base64.getEncoder().encodeToString(data);
-			return str;
-		}catch(IOException e)
-		{
-			return null;
-		}*/
-		return null;
-	}
 }

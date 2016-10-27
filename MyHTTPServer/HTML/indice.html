@@ -1,31 +1,73 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Prueba</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head> 
-<body> 
-
-<div data-role="page" id="page" data-position="fixed">
-	<div data-role="header">
-		<h1 style="text-align:center">Página principal</h1>
-	</div>
-	<div>	
-		<ul data-role="listview">
-			<li><a href="page2">Página dos</a></li>
-	    		<li><a href="page3">Página tres</a></li>
-			<li><a href="page4">Página cuatro</a></li>
-		</ul>		
-	</div>
-	<div>
-		<img src="nivelGay.jpg">
-	</div>
-	<div data-role="footer" data-position="fixed">
-		<h4 style="text-align:center">Pie de página</h4>
-	</div>
-</div>
-
-</body>
+ <head>
+  <title>Basic Fixed-width CSS Page Layout Example - resource-centre.net</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <style type="text/css">
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <header>
+    <big>Example Page Layout With CSS</big>
+   </header>
+   <nav>
+    <a href="#section1">Section 1</a>
+    <a href="#section2">Section 2</a>
+    <a href="#section3">Section 3</a>
+   </nav>
+   <article>
+    <h1>A Better Approch Than Tables or Frames</h1>
+    <p>
+     This working file is a <strong>fixed-width layout</strong> made possible through the use of HTML5 tags and CSS3.
+    </p>
+    <p>
+     You can use this instead of tables or frames. Feel free to adapt this as much as you want to make your own website layout.
+    </p>
+    <hr>
+    <h2>Dividing The Page Into Sections</h2>
+    <section>
+     <div class="thirds">
+      <p>
+       You can split up your content into columns, but be careful of not exceeding 100%.
+      </p>
+     </div>
+     <div class="thirds">
+      <p>
+       If you do, you will find one of your intended 'columns' is pushed underneath the others.
+      </p>
+     </div>
+     <div class="thirds last">
+      <p>
+       This may take some tweaking of the <strong>width</strong> and <strong>margin-right</strong> properties.
+      </p>
+     </div>
+    </section>
+    <hr>
+    <h2>Go Halves</h2>
+    <section>
+     <div class="halves">
+      <p>
+       You can equally divide the page into halves. Just bear in mind that your 100% is a total of your
+       column width percentages and your margin percentages.
+      </p>
+      <p>
+       We have used a <strong>.last</strong> class to ensure there is no <strong>margin-right</strong> on the final column so it sits flush to the right of our site.
+      </p>
+     </div>
+     <div class="halves last">
+      When in doubt, do the maths.<br>
+      <ul>
+       <li>2 Columns at 49% = 98%</li>
+       <li>Add one margin right at 1%. Total is now 99%;</li>
+       <li>This means for 50% width in this case you should have done: (100% - 1%) divided by 2 = 49.5%</li>
+      </ul>
+     </div>
+    </section>
+   </article>
+   <footer>
+    Example Code Courtesy of <a href="http://resource-centre.net" title="The Free Tutorial Centre">The Free Tutorial Centre</a>
+   </footer>
+  </div>
+ </body>
 </html>
-

@@ -9,9 +9,9 @@ public class ClientMain
 
 	public static void main(String[] args) throws Exception 
 	{
-		final int cola = 5;
-		final int port = 8081;
 		final String remoteHost = args[0];
+		final int cola = Integer.parseInt(args[1]);
+		final int port = Integer.parseInt(args[2]);
 		try
 		{
 			System.out.println("El servidor corre con el puerto: "+ port);

@@ -5,7 +5,9 @@ import java.rmi.registry.Registry;
 
 public class MasterMain 
 {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception 
+	{
+
 		final Registry registry = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
 		Master master = new Master(registry);
 		registry.rebind(Master.RMI_NAME, master);

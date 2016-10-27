@@ -9,33 +9,27 @@ import java.text.SimpleDateFormat;
 public class Slave extends UnicastRemoteObject implements SlaveServices 
 {
 	private String rmiName;
-	private String volumen;
-	private String fecha;
-	private String color;
 
 	protected Slave(String rmiName) throws RemoteException
 	{
 		super();
 		this.rmiName = rmiName;
+	}
+	public String getVolumen()
+	{
 		Reader read = new Reader();
 		try
 		{
 			String []datos = read.leerTXT("../../TextoEsclavo/info.txt").split("@");
-			this.volumen=datos[0];
-			this.fecha=datos[1];
-			this.color=datos[2];
+			return datos[0];
 		}catch(FileNotFoundException e)
 		{
 			System.out.println("no puedo encontrar la ruta o el archivo");
+			return null;
 		}catch(IOException ex)
 		{
-
+			return null;
 		}
-
-	}
-	public String getVolumen()
-	{
-		return volumen;
 	}
 	public String getFecha()
 	{
@@ -43,11 +37,37 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	}
 	public String ultimaFecha()
 	{
-		return fecha;
+		Reader read = new Reader();
+		try
+		{
+			String []datos = read.leerTXT("../../TextoEsclavo/info.txt").split("@");
+
+			return datos[1];
+
+		}catch(FileNotFoundException e)
+		{
+			System.out.println("no puedo encontrar la ruta o el archivo");
+			return null;
+		}catch(IOException ex)
+		{
+			return null;
+		}
 	}
 	public String getColor()
 	{
-		return color;
+		Reader read = new Reader();
+		try
+		{
+			String []datos = read.leerTXT("../../TextoEsclavo/info.txt").split("@");
+			return datos[2];
+		}catch(FileNotFoundException e)
+		{
+			System.out.println("no puedo encontrar la ruta o el archivo");
+			return null;
+		}catch(IOException ex)
+		{
+			return null;
+		}
 	}
 	public String sayHelloWorld() throws RemoteException 
 	{
@@ -63,8 +83,6 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 		Reader datos = new Reader();
 		if(datos.escribirTXT(aEscibir))
 		{
-			this.color = aEscibir;
-			this.fecha = getDateTime();
 			return true;
 		}else
 		{
@@ -73,7 +91,7 @@ public class Slave extends UnicastRemoteObject implements SlaveServices
 	}
 	private String getDateTime() 
 	{
-        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
     }

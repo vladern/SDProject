@@ -25,7 +25,7 @@ public class ServerResponse
 		text = text + cuerpo;
 		return text;
 	}
-	public String doGet(String controlerHost)
+	public String doGet(String controlerHost,int controlerPort)
 	{
 		try
 		{
@@ -40,7 +40,7 @@ public class ServerResponse
 				System.out.println("++"+request.getMethod()+"++");
 				if(request.getVersion().equals("controladorSD"))
 				{
-					Cliente cliente = new Cliente(controlerHost);
+					Cliente cliente = new Cliente(controlerHost,controlerPort);
 					String[] parte = request.getHeadboard().split(" ");
 					System.out.println("--"+parte[0]+"--");
 					return cabecera(cliente.getInfo(parte[0]));

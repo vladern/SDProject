@@ -1,6 +1,8 @@
 cd Controler
 cd autentia-rmi
 cd src
-echo "IP local:"
+echo -n "IP local:"
 read ip
-rmiregistry & java -cp . -Djava.rmi.server.hostname=$ip com.autentia.rmi.MasterMain
+echo -n "port:"
+read port
+rmiregistry $port & java -cp . -Djava.rmi.server.hostname=$ip com.autentia.rmi.MasterMain

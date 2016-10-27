@@ -6,12 +6,14 @@ import java.util.concurrent.*;
 public class Proceso extends Thread
 {
 	private Socket skCliente;
-	private String controlerHost;		
-	public Proceso(Socket psCliente,String controlerHost)
+	private String controlerHost;
+	private int controlerPort;		
+	public Proceso(Socket psCliente,String controlerHost,int controlerPort)
 	{
 		super();
 		this.skCliente = psCliente;
 		this.controlerHost= controlerHost;
+		this.controlerPort=controlerPort;
 	}
 	public void run()
 	{
@@ -29,16 +31,12 @@ public class Proceso extends Thread
 				System.out.println("----"+peticion.getMethod()+"----");
 				if(peticion.getMethod().equals("GET "))
 				{
-					//System.out.println("El recurso es:"+peticion.getResource());
-					out.write(respuesta.doGet(controlerHost));//mando la respuesta del get
-				}/*else if () 
-				{
-					
-				}*/else
+					out.write(respuesta.doGet(controlerHost,controlerPort));//mando la respuesta del get
+				}else
 				{
 					out.write(respuesta.doError()); // mando un html de un error
 				}
-				System.err.println("Conexión ha terminado");//al ternimar el flujo cierro todos los flujos
+				System.out.println("Conexión ha terminado");//al ternimar el flujo cierro todos los flujos
 				out.close();
 				in.close();
 				this.skCliente.close();

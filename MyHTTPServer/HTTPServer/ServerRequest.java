@@ -18,13 +18,24 @@ public class ServerRequest
 				System.out.println("--"+s+"--");
 				String [] partes = s.split("/");
 				this.method = partes[0];
-				this.resource = partes[1];
-				if(this.resource.equals("favicon.ico HTTP")==false && this.resource.equals(" HTTP"))
+				if(method.equals("GET "))
 				{
-					this.version = partes[2];
-					this.headboard = partes[3];
-					System.out.println("@@-"+this.headboard);				
+					this.resource = partes[1];
+					if(this.resource.equals("favicon.ico HTTP")==false && this.resource.equals(" HTTP")==false)
+					{
+						try
+						{
+							this.version = partes[2];
+							this.headboard = partes[3];
+							System.out.println("@@-"+this.headboard);
+						}catch(ArrayIndexOutOfBoundsException e)
+						{
+							this.headboard = partes[2];
+						}
+				
+					}
 				}
+
 			}catch(IOException e)
 			{
 				System.out.println("Unable to read request");
