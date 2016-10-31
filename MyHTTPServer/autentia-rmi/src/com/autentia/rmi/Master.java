@@ -3,6 +3,9 @@ package com.autentia.rmi;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+import java.rmi.NotBoundException;
+import java.rmi.AccessException;
 
 public class Master extends UnicastRemoteObject implements MasterServices {
 
@@ -28,6 +31,20 @@ public class Master extends UnicastRemoteObject implements MasterServices {
 			throw e;
 		}
 		System.out.println("Registered: " + rmiName);
+	}
+	public void unregisterSlave(SlaveServices slave)throws RemoteException
+	{
+		String rmiName="";
+		try {
+			rmiName = slave.getRmiName();
+			registry.unbind(rmiName);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}catch(NotBoundException ex)
+		{
+			ex.printStackTrace();
+		}
+		System.out.println("Unregistered: " + rmiName);
 	}
 
 	public void sayHelloWorld() throws RemoteException {

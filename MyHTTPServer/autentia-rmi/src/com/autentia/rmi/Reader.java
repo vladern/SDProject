@@ -1,4 +1,4 @@
-package com.autentia.rmi;
+	package com.autentia.rmi;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
@@ -26,7 +26,7 @@ public class Reader
 		    return aux;	
 		}catch(FileNotFoundException e)
 		{
-			return "no encuentro el archivo";
+			return "<h1>NO ENCONTRADO EL ARCHIVO DE LA SONDA CONTACTE CON EL ADMINISTRADOR </h1>@<h1>NO ENCONTRADO EL ARCHIVO DE LA SONDA CONTACTE CON EL ADMINISTRADOR </h1>@<h1>NO ENCONTRADO EL ARCHIVO DE LA SONDA CONTACTE CON EL ADMINISTRADOR </h1>@";
 		}catch(IOException e)
 		{
 			return null;
@@ -37,6 +37,10 @@ public class Reader
 		try
 		{
 			String[] datos = leerTXT("../../TextoEsclavo/info.txt").split("@");
+			if(datos[0].toUpperCase().contains("ADMINISTRADOR".toUpperCase()))
+			{
+				return false;
+			}
 			PrintWriter writer = new PrintWriter("../../TextoEsclavo/info.txt", "UTF-8");
 			writer.println(datos[0]);
 			writer.println(getDateTime());

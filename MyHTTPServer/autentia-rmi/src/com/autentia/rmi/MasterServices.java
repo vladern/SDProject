@@ -10,4 +10,5 @@ public interface MasterServices extends Remote
 {	
 
 	public void registerSlave(SlaveServices slave) throws RemoteException;
+	public void unregisterSlave(SlaveServices slave)throws RemoteException;
 }

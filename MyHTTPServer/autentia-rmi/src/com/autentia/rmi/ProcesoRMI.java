@@ -77,7 +77,7 @@ public class ProcesoRMI extends Thread
 			String devolver="<body>";
 			for(String nombres : remoteObjNames)
 			{
-				devolver+=nombres;
+				devolver+=nombres+" ";
 			}
 			return devolver+="</body>";
 		}catch(RemoteException e)

@@ -13,19 +13,17 @@ public class SlaveMain {
 		final Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
 		final Slave slave = new Slave(slaveRmiName);
 
-		System.out.println("Try to register " + slave.getRmiName()
-				+ " in remote Registry (only works if Registry was created in the same host).");
-		try {
-			registry.rebind(slave.getRmiName(), slave);
-
-		} catch (RemoteException e)
-		{
-			// No puedes hacer bind, rebind, or unbind de un objeto remoto
-			// en un Registry que ha sido creado en otro host.
-			e.printStackTrace();
-		}
 		System.out.println("Register " + slave.getRmiName() + " through the Master.");
 		final MasterServices master = (MasterServices)registry.lookup(Master.RMI_NAME);
 		master.registerSlave(slave);
+		// Lectura de hasta 10 bytes
+		byte [] buffer = new byte[10];
+		System.out.println("Enter para parar el esclavo:");
+		System.in.read(buffer);
+		if(buffer!=null)
+		{
+			master.unregisterSlave(slave);
+			System.exit(0);
+		}
 	}
 }
