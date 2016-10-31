@@ -1,4 +1,4 @@
-	package com.autentia.rmi;
+package com.autentia.rmi;
 import java.io.*;
 import java.net.*;
 import java.rmi.registry.LocateRegistry;

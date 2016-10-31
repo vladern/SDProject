@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.lang.ArrayIndexOutOfBoundsException;
 public class ProcesoRMI extends Thread 
 {
 	private String remoteHost;
@@ -62,10 +63,19 @@ public class ProcesoRMI extends Thread
 		}catch(IOException e)
 		{
 
-		}/*atch(NotBoundException ex)
+		}catch(ArrayIndexOutOfBoundsException ex)
 		{
+			try
+			{
+				OutputStream aux1 = clientSocket.getOutputStream();
+				DataOutputStream flujo1= new DataOutputStream( aux1 );
+				flujo1.writeUTF("Error 409:función no especificada");
+			}catch(IOException exx)
+			{
 
-		}*/
+			}
+
+		}
 	}
 	private String listaDeSondas()
 	{
@@ -115,7 +125,7 @@ public class ProcesoRMI extends Thread
 	                	{
 	                		return "color del led es ="+server.getColor();
 	                	}
-	                	return "he encontrado mi esclavo";
+	                	return "<h1 style=\"text-align:center\">Error 409 no existe dicha peticion</h1>";
 	                }
 	            }
 	        }

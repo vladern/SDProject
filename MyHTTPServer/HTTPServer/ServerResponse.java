@@ -37,13 +37,17 @@ public class ServerResponse
 				return "";
 			}else
 			{	
-				System.out.println("++"+request.getMethod()+"++");
+				System.out.println("++"+request.getVersion()+"++");
 				if(request.getVersion().equals("controladorSD"))
 				{
 					Cliente cliente = new Cliente(controlerHost,controlerPort);
 					String[] parte = request.getHeadboard().split(" ");
 					System.out.println("--"+parte[0]+"--");
 					return cabecera(cliente.getInfo(parte[0]));
+				}else if(!request.getVersion().equals(" HTTP"))
+				{
+					System.out.println("respuesta");
+					return cabecera("<h1>Error recurso mal especificado</h1>");
 				}else
 				{
 					System.out.println("--"+request.getResource()+"--");

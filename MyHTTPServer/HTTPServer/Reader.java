@@ -26,7 +26,7 @@ public class Reader
 		{
 			try
 			{
-				return this.leerTXT("HTML/error.html");
+				return this.leerTXT("HTML/error404.html");
 			}catch(FileNotFoundException x)
 			{
 				return null;
