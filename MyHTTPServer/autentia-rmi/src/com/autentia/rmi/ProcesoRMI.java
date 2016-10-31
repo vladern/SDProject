@@ -75,19 +75,14 @@ public class ProcesoRMI extends Thread
 			Registry registry = LocateRegistry.getRegistry(remoteHost, Registry.REGISTRY_PORT);
 			String[] remoteObjNames = registry.list();
 			String devolver="<body>";
-			for(String remoteObjName : remoteObjNames)
+			for(String nombres : remoteObjNames)
 			{
-				Object obj = registry.lookup(remoteObjName);
-				final SlaveServices server = (SlaveServices)obj;
-				devolver+=server.getRmiName()+"\n";
+				devolver+=nombres;
 			}
 			return devolver+="</body>";
 		}catch(RemoteException e)
 		{
 			return "RemoteException";
-		}catch(NotBoundException ex)
-		{
-			return "NotBoundException";
 		}
 
 	}

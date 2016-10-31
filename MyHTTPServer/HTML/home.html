@@ -3,35 +3,52 @@
 <head>
 	<meta charset="UTF-8">
 	<title>bienvenida</title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 <body>
+<div class="col-md-4">
+</div>
+<div class="col-md-4" style="margin-top: 5%">
 	<section>
 			<form name="luz" id="home1" method="get" action="controladorSD/luz">
-				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda">
-				<input type="submit" value="luz?">
+				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda" class="form-control" required>
+				<input type="submit" value="luz?" class="btn btn-primary">
 			</form>
 			</br>
 			<form name="volumen" id="home2" method="get" action="controladorSD/volumen">
-				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda">
-				<input type="submit" value="volumen?">
+				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda" class="form-control" required>
+				<input type="submit" value="volumen?" class="btn btn-primary">
 			</form>
 			</br>
 			<form name="luz" id="home1" method="get" action="controladorSD/ultimafecha">
-				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda">
-				<input type="submit" value="ultimafecha?">
+				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda" class="form-control" required>
+				<input type="submit" value="ultimafecha?" class="btn btn-primary">
+			</form>	
+			</br>
+			<form name="luz" id="home1" method="get" action="controladorSD/fecha">
+				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda" class="form-control" required>
+				<input type="submit" value="fecha?" class="btn btn-primary">
 			</form>	
 			</br>
 			<form name="luz" id="home1" method="get" action="controladorSD/">
-				<input name="setluz" type="text" id="nombre" placeholder="number">
-				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda">
-				<input type="submit" value="setluz">
+				<input name="setluz" type="text" id="nombre" placeholder="number" class="form-control" required>
+				<input name="Sonda" type="text" id="nombre" placeholder="nombre Sonda" class="form-control" required>
+				<input type="submit" value="setluz" class="btn btn-primary">
 			</form>	
 			</br>
 			<form name="indice" method="get" action="controladorSD/">
 			  <input type="radio" name="sondas" value="sondas" checked>Sondas<br>
-			  <input type="submit" value="conseguir nombre de las sondas"/>
+			  <input type="submit" value="conseguir nombre de las sondas" class="btn btn-primary"/>
 			</form>	
-
 	</section>
+</div>
 </body>
 </html>
