@@ -2,6 +2,9 @@ package HTTPServer;
 import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class ServerResponse
 {
@@ -16,7 +19,7 @@ public class ServerResponse
 	public String cabecera(String cuerpo)
 	{
 		String text = "HTTP/1.0 200 OK\r\n";
-		text = text + "Last-modified: Fri, 09 Aug 2016 14:21:40 GMT\r\n";
+		//text = text + "Last-modified:"+getDateTime()+"\r\n";
 		text = text + "Cnection: close\r\n";
 		text = text + "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		text = text + "Server: myHttpServer\r\n";
@@ -25,6 +28,12 @@ public class ServerResponse
 		text = text + cuerpo;
 		return text;
 	}
+	private String getDateTime() 
+	{
+        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 	public String doGet(String controlerHost,int controlerPort)
 	{
 		try
